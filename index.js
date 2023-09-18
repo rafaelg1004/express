@@ -1,28 +1,14 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 const PORT = 3000;
 
-const tasks = [
-  {
-    id: "123456",
-    isCompleted: false,
-    description: "Walk the dog",
-  },
-  {
-    id: "789012",
-    isCompleted: true,
-    description: "Buy groceries",
-  },
-  {
-    id: "345678",
-    isCompleted: false,
-    description: "Clean the house",
-  }
-];
+// Importa los routers
+const listViewRouter = require('./routes/list-view-router');
+const listEditRouter = require('./routes/list-edit-router');
 
-app.get("/tasks", (req, res) => {
-  res.json(tasks);
-});
+// Usa los routers en el servidor
+app.use('/list-view', listViewRouter);
+app.use('/list-edit', listEditRouter);
 
 app.listen(PORT, () => {
   console.log(`Servidor funcionando en http://localhost:${PORT}`);
