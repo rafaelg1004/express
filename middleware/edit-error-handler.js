@@ -3,7 +3,7 @@ function handleEditErrors(req, res, next) {
       return res.status(400).send('Cuerpo de la solicitud vacío en POST');
     }
   
-    if (req.method === 'POST' && (!req.body.description || !req.body.isCompleted)) {
+    if (req.method === 'POST' && (!req.body.description || req.body.isCompleted===null)) {
       return res.status(400).send('Información no válida o atributos faltantes para crear tareas en POST');
     }
   
