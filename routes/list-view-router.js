@@ -1,32 +1,25 @@
 const express = require('express');
 const listViewRouter = express.Router();
+const tasks = require ("../data");
 
-const tasks = [
-    {
-        "id": "123456",
-        "isCompleted": false,
-        "description": "Walk the dog"
-      },
-      {
-        "id": "789012",
-        "isCompleted": true,
-        "description": "Buy groceries"
-      },
-      {
-        "id": "345678",
-        "isCompleted": false,
-        "description": "Clean the house"
-      }
-];
+listViewRouter.get('/tareas', (req, res) => {
+  res.status(200).send(tasks);
+});
 
+listViewRouter.get("/tareas/id/:id",(req, res)=>{
+  const idtask= req.params.id;
+  console.log(idtask);
+  const dataTasks =tasks.find((item)=>item.id==idtask)
+  res.status(200).send(dataTasks);
+});
 // Ruta para listar tareas completas
-listViewRouter.get('/completed', (req, res) => {
+listViewRouter.get('/tareas/completed', (req, res) => {
   const completedTasks = tasks.filter(task => task.isCompleted);
   res.json(completedTasks);
 });
 
 // Ruta para listar tareas incompletas
-listViewRouter.get('/incomplete', (req, res) => {
+listViewRouter.get('/tareas/incomplete', (req, res) => {
   const incompleteTasks = tasks.filter(task => !task.isCompleted);
   res.json(incompleteTasks);
 });
