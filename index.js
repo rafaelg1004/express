@@ -17,7 +17,7 @@ app.use(methodChecker);
 
 // Usa los routers en el servidor
 app.use('/',listViewRouter);
-app.use("/",handleViewErrors);
+//app.use("/",handleViewErrors);
 app.use('/', handleEditErrors,listEditRouter);
 
 app.listen(PORT, () => {

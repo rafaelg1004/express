@@ -16,8 +16,21 @@ listEditRouter.post('/tareas/create', (req, res) => {
 // Ruta para eliminar una tarea
 listEditRouter.delete('/tareas/delete/:id', (req, res) => {
   const taskId = req.params.id;
-  tasks = tasks.filter(task => task.id !== taskId);
-  res.json({ message: "Tarea eliminada exitosamente" });
+
+  let taskIndex = -1;
+  for (let i = 0; i < tasks.length; i++) {
+    if (tasks[i].id === taskId) {
+      taskIndex = i;
+      break;
+    }
+  }
+
+  if (taskIndex !== -1) {
+    tasks.splice(taskIndex, 1);
+    res.json({ message: "Tarea eliminada exitosamente" });
+  } else {
+    res.status(404).json({ message: "Tarea no encontrada" });
+  }
 });
 
 // Ruta para actualizar una tarea
