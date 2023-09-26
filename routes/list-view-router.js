@@ -15,13 +15,13 @@ listViewRouter.get("/tareas/id/:id",(req, res)=>{
 // Ruta para listar tareas completas
 listViewRouter.get('/tareas/completed', (req, res) => {
   const completedTasks = tasks.filter(task => task.isCompleted);
-  res.json(completedTasks);
+  res.status(200).json(completedTasks);
 });
 
 // Ruta para listar tareas incompletas
 listViewRouter.get('/tareas/incomplete', (req, res) => {
   const incompleteTasks = tasks.filter(task => !task.isCompleted);
-  res.json(incompleteTasks);
+  res.status(200).json(incompleteTasks);
 });
 
 module.exports = listViewRouter;

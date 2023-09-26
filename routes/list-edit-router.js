@@ -9,7 +9,7 @@ listEditRouter.post('/tareas/create', (req, res) => {
     const newTask = req.body; // Se espera que la solicitud contenga un objeto de tarea
     //newTask.id = Date.now().toString(); // Asigna un ID único (en este caso, la marca de tiempo)
     tasks.push(newTask);
-    res.status(200).send("Se creo una Tarea");
+    res.status(201).send("Se creo una Tarea");
     
 });
 
